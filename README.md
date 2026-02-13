@@ -264,7 +264,7 @@ RAN Optimization & UE Device Testing Engineer | Wireless Validation Engineer
 
 - 📧 Email: [hh.arbizo@icloud.com]
 - 💼 LinkedIn: [https://www.linkedin.com/in/herbert-arbizo/]
-- 🌐 Portfolio: [your-website.com]
+- 🌐 Portfolio: [https://github.com/0xh3-zo/wireless-validation-pytest]
 
 ---
 

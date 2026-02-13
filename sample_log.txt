@@ -1,0 +1,33 @@
+2026-02-03 09:00:01.123  [RRC] RRC Connection Request
+2026-02-03 09:00:01.456  [RRC] RRC Connection Setup
+2026-02-03 09:00:01.502  [RRC] RRC Connection Setup Complete
+2026-02-03 09:00:02.001  [NAS] Registration Request (5GS)
+2026-02-03 09:00:02.215  [NAS] Registration Accept (5GS)
+2026-02-03 09:00:03.100  [5G_NR] Measurement Report: RSRP=-78dBm, RSRQ=-9dB, SINR=22dB
+2026-02-03 09:00:03.101  [NAS] PDU Session Establishment Request
+2026-02-03 09:00:03.340  [NAS] PDU Session Establishment Accept
+2026-02-03 09:02:15.000  [5G_NR] Measurement Report: RSRP=-83dBm, RSRQ=-10dB, SINR=18dB
+2026-02-03 09:04:30.000  [5G_NR] Measurement Report: RSRP=-88dBm, RSRQ=-11dB, SINR=14dB
+2026-02-03 09:05:12.456  [RRC] RRC Reconfiguration (Handover Command) - Source Cell: 1001
+2026-02-03 09:05:12.521  [RRC] RRC Reconfiguration Complete - Target Cell: 1002
+2026-02-03 09:06:45.000  [5G_NR] Measurement Report: RSRP=-91dBm, RSRQ=-12dB, SINR=11dB
+2026-02-03 09:08:20.000  [5G_NR] Measurement Report: RSRP=-95dBm, RSRQ=-13dB, SINR=8dB
+2026-02-03 09:09:05.123  [RRC] RRC Reconfiguration (Handover Command) - Source Cell: 1002
+2026-02-03 09:09:05.198  [RRC] RRC Reconfiguration Complete - Target Cell: 1003
+2026-02-03 09:10:30.000  [5G_NR] Measurement Report: RSRP=-86dBm, RSRQ=-11dB, SINR=13dB
+2026-02-03 09:12:00.000  [5G_NR] Measurement Report: RSRP=-80dBm, RSRQ=-9dB, SINR=17dB
+2026-02-03 09:14:30.000  [5G_NR] Measurement Report: RSRP=-77dBm, RSRQ=-9dB, SINR=19dB
+2026-02-03 09:15:45.123  [RRC] RRC Reconfiguration (Handover Command) - Source Cell: 1003
+2026-02-03 09:15:45.187  [RRC] RRC Reconfiguration Complete - Target Cell: 1004
+2026-02-03 09:17:20.000  [5G_NR] Measurement Report: RSRP=-81dBm, RSRQ=-10dB, SINR=16dB
+2026-02-03 09:19:00.000  [5G_NR] Measurement Report: RSRP=-75dBm, RSRQ=-8dB, SINR=20dB
+2026-02-03 09:20:10.456  [RRC] RRC Reconfiguration (Handover Command) - Source Cell: 1004
+2026-02-03 09:20:10.521  [RRC] RRC Reconfiguration Complete - Target Cell: 1005
+2026-02-03 09:22:30.000  [5G_NR] Measurement Report: RSRP=-84dBm, RSRQ=-10dB, SINR=15dB
+2026-02-03 09:25:00.000  [5G_NR] Measurement Report: RSRP=-88dBm, RSRQ=-11dB, SINR=12dB
+2026-02-03 09:28:00.000  [5G_NR] Measurement Report: RSRP=-82dBm, RSRQ=-10dB, SINR=14dB
+2026-02-03 09:30:00.000  [NAS] PDU Session Modification Request
+2026-02-03 09:30:01.100  [NAS] PDU Session Modification Complete
+2026-02-03 09:35:00.000  [5G_NR] Measurement Report: RSRP=-79dBm, RSRQ=-9dB, SINR=18dB
+2026-02-03 09:40:00.000  [5G_NR] Measurement Report: RSRP=-85dBm, RSRQ=-11dB, SINR=13dB
+2026-02-03 09:44:59.000  [RRC] RRC Connection Release

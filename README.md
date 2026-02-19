@@ -192,11 +192,6 @@ wireless-validation-pytest/
 - Validate parameter changes (A3 offsets, timers)
 - Root cause analysis for call drops
 
-### For Device Manufacturers (Apple, Samsung, Google)
-- Pre-certification validation against carrier networks
-- Modem firmware regression testing
-- Multi-vendor chipset comparison (Qualcomm vs MediaTek)
-- IOT testing with different RAN vendors
 
 ---
 

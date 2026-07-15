@@ -102,7 +102,7 @@ class AnthropicProvider(LLMProvider):
             self._failure_note = f"non-JSON API response: {exc}"
             return None
 
-	if data.get("stop_reason") == "max_tokens":
+        if data.get("stop_reason") == "max_tokens":
             self._failure_note = (
                 f"response truncated at max_tokens={_MAX_TOKENS} — "
                 "raise _MAX_TOKENS in llm.py"

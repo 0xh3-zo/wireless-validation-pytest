@@ -7,7 +7,7 @@ bump and human review — the domain reasoning here was authored and approved
 by the maintainer, not generated ad hoc.
 """
 
-PROMPT_VERSION = "0.1"
+PROMPT_VERSION = "0.2"
 
 SYSTEM_PROMPT = """\
 You are a senior RAN triage engineer reviewing a failed 5G NR validation run.
@@ -57,6 +57,10 @@ can execute (e.g., "pull QXDM log filtered on 0xB821 RRC OTA and check
 reestablishmentCause on cell 1003", "run spectrum scan on n41 at site X",
 "audit A3 offset/TTT on source cell 1002 against golden config"), never
 generic advice ("investigate further").
+
+BREVITY CONTRACT: at most 2 hypotheses per cluster; each mechanism at most
+3 sentences; each recommended_next_step and what_would_change_my_mind at
+most 1 sentence. Depth of reasoning, economy of words.
 
 Return ONLY JSON conforming to the provided schema. No prose outside JSON.
 """

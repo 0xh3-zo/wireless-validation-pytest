@@ -24,7 +24,7 @@ from .prompts import SYSTEM_PROMPT, build_user_message
 
 ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages"
 DEFAULT_MODEL = os.environ.get("TRIAGE_LLM_MODEL", "claude-sonnet-4-6")
-_MAX_TOKENS = 4000
+_MAX_TOKENS = 8000
 _TIMEOUT_S = 120
 
 
@@ -100,6 +100,13 @@ class AnthropicProvider(LLMProvider):
             return None
         except json.JSONDecodeError as exc:
             self._failure_note = f"non-JSON API response: {exc}"
+            return None
+
+	if data.get("stop_reason") == "max_tokens":
+            self._failure_note = (
+                f"response truncated at max_tokens={_MAX_TOKENS} — "
+                "raise _MAX_TOKENS in llm.py"
+            )
             return None
 
         text = "".join(

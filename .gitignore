@@ -119,3 +119,6 @@ api_keys.txt
 # ============================================================================
 docs/_build/
 site/
+
+# Triage run artifacts (generated per run — never committed)
+runs/

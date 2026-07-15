@@ -151,15 +151,25 @@ make demo
 
 ## 📊 Test Coverage
 
-### Green suite — 30 tests, always passing (`pytest`)
+### 12 Test Cases Across 4 Categories:
 
-- **Parser** (`tests/test_parser.py`) — event parsing, layer filtering, RF extraction (with and without `Cell=` context), call-setup timing, handover detection, `reestablishmentCause` capture, NAS 5GMM/5GSM cause codes, ping-pong detection, malformed/empty-log edge cases
-- **Heuristics** (`tests/test_heuristics.py`) — every fault-domain rule, precedence order (RF collapse outranks neighbor blame), the cross-cell device override, and unclustered fall-through
-- **Governance** (`tests/test_report.py`) — citation validation (valid kept, fabricated discarded, uncited discarded), exec-summary five-sentence contract enforcement
+#### 1️⃣ **Log Parsing Tests** (`TestLogParsing`)
+- ✅ `test_parser_initialization` - Verifies log file loads correctly
+- ✅ `test_filter_by_layer` - Validates protocol layer separation (RRC, NAS, 5G_NR)
+- ✅ `test_extract_rf_measurements` - Confirms RSRP/RSRQ/SINR extraction
 
-### Demo suite — 5 seeded field logs (`make demo`, marker `field_demo`)
+#### 2️⃣ **KPI Validation Tests** (`TestKPIValidation`)
+- ✅ `test_rsrp_threshold` - Ensures ≤20% of samples below -110 dBm
+- ✅ `test_call_setup_time` - Validates RRC setup within 2000ms SLA
 
-Deliberately failing inputs for the triage agent, excluded from the default run. Four logs each exhibit one fault-domain signature; one healthy baseline proves the checks pass clean logs.
+#### 3️⃣ **Handover Analysis Tests** (`TestHandoverAnalysis`)
+- ✅ `test_handover_scenarios` - Individual handover success/failure validation
+- ✅ `test_handover_success_rate` - Verifies ≥95% success rate (3GPP target)
+
+#### 4️⃣ **Edge Case Tests** (`TestEdgeCases`)
+- ✅ `test_empty_log` - Handles empty/corrupt log files
+- ✅ `test_malformed_log_line` - Skips unparseable lines gracefully
+- ✅ `test_missing_handover_completion` - Detects incomplete handover attempts
 
 ---
 
@@ -187,17 +197,15 @@ The framework:
 ### Output: Test Results + HTML Report
 
 ```
-tests/test_field_validation.py::test_field_log_kpis[missing_neighbor.txt] FAILED
-E   AssertionError: KPI violations:
-E     - HO success rate 66.7% below 95% (2/3)
-E     - Ping-pong 2001<->2002 within 7.0s
+test_log_parser.py::TestKPIValidation::test_rsrp_threshold PASSED        [ 33%]
+  RSRP: 1/17 samples below -110 dBm (5.9%) — threshold ≤20%
 
-[triage] 13 evidence records -> runs/2026-07-14T16-04-00/run_record.json
-[triage] next: python -m wireless_validation.triage runs/latest/run_record.json
+test_log_parser.py::TestHandoverAnalysis::test_handover_success_rate FAILED [ 66%]
+  HO success rate: 71.4% (KPI target: 80%)
+  AssertionError: 2 handover failures detected at Cells 1003 and 1005
+
+======================== 11 passed, 1 failed in 0.06s =======================
 ```
-
-Every failure also leaves structured evidence behind — that JSON record is
-the input to the triage agent described above.
 
 ---
 
@@ -214,33 +222,37 @@ All thresholds are defined in the `kpi_thresholds` fixture:
 | Handover success rate | ≥ 95% | 3GPP TS 38.331 |
 | Handover duration | ≤ 100 ms | 3GPP TS 38.331 |
 
-Thresholds live in one place — `src/wireless_validation/kpis.py` — and are
-embedded into every `run_record.json`, so the triage layer always judges
-evidence against the same bars the tests used:
+To modify thresholds, edit the fixture in `test_log_parser.py`:
 
 ```python
-KPI_THRESHOLDS = {
-    "rsrp_min_dbm": -110,
-    "handover_success_rate_min": 0.95,  # change to 0.80 for 80%
-    # ...
-}
+@pytest.fixture
+def kpi_thresholds():
+    return {
+        "rsrp_min": -110,
+        "handover_success_rate_min": 0.95,  # Change to 0.80 for 80%
+        # ... other thresholds
+    }
 ```
 
 ---
 
-## 🧪 Example Triage Output
+## 🧪 Example Test Output
 
 ```
-$ make demo
-Heuristic pass: 13 evidence records -> 4 cluster(s), 0 unclustered
-  CL-1 [core_transport] 2 records via ['NAS_CORE_CAUSE']
-  CL-2 [rf_coverage] 5 records via ['HO_FAIL_RF_COLLAPSE', 'RF_COVERAGE_HOLE', 'RF_INTERFERENCE']
-  CL-3 [mobility_neighbor] 2 records via ['HO_FAIL_TARGET_NEVER_MEASURED', 'HO_PINGPONG']
-  CL-4 [ran_parameter_config] 4 records via ['HO_FAIL_RECONFIG_CAUSE', 'SLOW_HO_HEALTHY_RF', 'SLOW_SETUP_HEALTHY_RF']
+============== test session starts ==============
 
-Wrote:
-  runs/latest/triage_report.md
-  runs/latest/exec_summary.md
+test_log_parser.py::TestLogParsing::test_parser_initialization PASSED
+test_log_parser.py::TestLogParsing::test_filter_by_layer PASSED
+  Protocol breakdown → RRC:20  NAS:6  5G_NR:17
+
+test_log_parser.py::TestKPIValidation::test_rsrp_threshold PASSED
+  RSRP: 1/17 samples below -110 dBm (5.9%) — threshold ≤20%
+  
+test_log_parser.py::TestHandoverAnalysis::test_handover_success_rate PASSED
+  HO success rate: 100% (KPI target: 95%)
+  Handovers: 7 total | 7 success | 0 failed
+
+============== 12 passed in 0.04s ===============
 ```
 
 ---
@@ -303,26 +315,23 @@ wireless-validation-pytest/
 # 1. Export QXDM log from field test
 # QXDM Professional → File → Export → Text File → save as drive_test.txt
 
-# 2. Drop it into fixtures/failing_runs/ (or point a test at it)
-cp drive_test.txt fixtures/failing_runs/
+# 2. Point fixture at new log
+# Edit test_log_parser.py: sample_qxdm_log fixture → open("drive_test.txt")
 
-# 3. Run validation — structured evidence is captured automatically
-pytest tests/test_field_validation.py -m field_demo --html=report_$(date +%Y%m%d).html
+# 3. Run validation
+pytest test_log_parser.py -v -s --html=report_$(date +%Y%m%d).html
 
-# 4. Triage the failures before filing Jira defects
-python -m wireless_validation.triage runs/latest/run_record.json
-# Open runs/latest/triage_report.md → each cluster maps to an owning team
+# 4. Review failures and file Jira defects
+# Open HTML report → identify failed tests → create defect tickets
 ```
 
 ### For CI/CD Pipelines:
 
 ```yaml
 # .github/workflows/pytest.yml
-- run: pytest                     # green suite gates the merge
-- run: pytest -m field_demo || true   # field logs may fail — that's triage input
-- run: python -m wireless_validation.triage runs/latest/run_record.json --provider none
-- uses: actions/upload-artifact@v4
-  with: {name: triage-report, path: runs/latest/}
+- run: pytest test_log_parser.py -v
+- if: failure()
+  run: notify_slack "Network validation failed - check handover KPIs"
 ```
 
 ---

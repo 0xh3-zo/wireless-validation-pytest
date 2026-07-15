@@ -1,0 +1,13 @@
+# Python dependencies for QXDM Protocol Log Analysis Framework
+# Install with: pip install -r requirements.txt
+
+# Core testing framework
+pytest>=7.4.0
+
+# HTML report generation
+pytest-html>=4.0.0
+
+# Optional but useful for advanced scenarios:
+# pytest-xdist>=3.3.0       # Parallel test execution
+# pytest-cov>=4.1.0         # Code coverage reports
+# pytest-timeout>=2.1.0     # Test timeouts

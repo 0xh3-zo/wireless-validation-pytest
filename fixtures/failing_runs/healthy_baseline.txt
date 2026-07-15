@@ -1,0 +1,8 @@
+2026-02-03 09:40:00.000  [RRC] RRC Connection Request
+2026-02-03 09:40:00.300  [RRC] RRC Connection Setup
+2026-02-03 09:40:00.350  [RRC] RRC Connection Setup Complete
+2026-02-03 09:40:01.000  [5G_NR] Measurement Report: RSRP=-75dBm, RSRQ=-8dB, SINR=22dB, Cell=6001
+2026-02-03 09:40:05.000  [RRC] RRC Reconfiguration (Handover Command) - Source Cell: 6001
+2026-02-03 09:40:05.060  [RRC] RRC Reconfiguration Complete - Target Cell: 6002
+2026-02-03 09:40:07.000  [5G_NR] Measurement Report: RSRP=-77dBm, RSRQ=-9dB, SINR=20dB, Cell=6002
+2026-02-03 09:40:15.000  [RRC] RRC Connection Release

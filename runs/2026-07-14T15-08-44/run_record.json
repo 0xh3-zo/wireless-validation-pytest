@@ -1,0 +1,242 @@
+{
+  "schema_version": "1.0",
+  "run": {
+    "timestamp": "2026-07-14T15:08:44",
+    "total_tests": 5,
+    "failed": 4,
+    "log_files": [
+      "core_reject.txt",
+      "coverage_hole.txt",
+      "missing_neighbor.txt",
+      "param_config.txt"
+    ]
+  },
+  "kpi_thresholds": {
+    "rsrp_min_dbm": -110,
+    "rsrq_min_db": -15,
+    "sinr_min_db": 0,
+    "rsrp_fail_fraction_max": 0.2,
+    "handover_success_rate_min": 0.95,
+    "handover_duration_max_ms": 100,
+    "call_setup_time_max_ms": 2000
+  },
+  "truncated": false,
+  "evidence_records": [
+    {
+      "evidence_id": "EV-001",
+      "type": "nas_failure",
+      "timestamp": "09:30:02.300",
+      "procedure": "registration",
+      "cause_family": "5GMM",
+      "cause_code": 22,
+      "message": "Registration Reject (5GS) - Cause: #22",
+      "rf_context": {
+        "rsrp": -78,
+        "rsrq": -9,
+        "sinr": 21
+      },
+      "originating_test": "tests/test_field_validation.py::test_field_log_kpis[core_reject.txt]",
+      "log_file": "core_reject.txt"
+    },
+    {
+      "evidence_id": "EV-002",
+      "type": "nas_failure",
+      "timestamp": "09:30:06.400",
+      "procedure": "pdu_session",
+      "cause_family": "5GSM",
+      "cause_code": 26,
+      "message": "PDU Session Establishment Reject - Cause: #26",
+      "rf_context": {
+        "rsrp": -80,
+        "rsrq": -9,
+        "sinr": 19
+      },
+      "originating_test": "tests/test_field_validation.py::test_field_log_kpis[core_reject.txt]",
+      "log_file": "core_reject.txt"
+    },
+    {
+      "evidence_id": "EV-003",
+      "type": "rf_degradation",
+      "timestamp": "09:02:00.000",
+      "cell": 3001,
+      "rf_context": {
+        "rsrp": -112,
+        "rsrq": -16,
+        "sinr": -2
+      },
+      "rsrp_breach": true,
+      "sinr_breach": true,
+      "interference_signature": false,
+      "thresholds": {
+        "rsrp_min_dbm": -110,
+        "sinr_min_db": 0
+      },
+      "originating_test": "tests/test_field_validation.py::test_field_log_kpis[coverage_hole.txt]",
+      "log_file": "coverage_hole.txt"
+    },
+    {
+      "evidence_id": "EV-004",
+      "type": "rf_degradation",
+      "timestamp": "09:03:00.000",
+      "cell": 3001,
+      "rf_context": {
+        "rsrp": -115,
+        "rsrq": -17,
+        "sinr": -4
+      },
+      "rsrp_breach": true,
+      "sinr_breach": true,
+      "interference_signature": false,
+      "thresholds": {
+        "rsrp_min_dbm": -110,
+        "sinr_min_db": 0
+      },
+      "originating_test": "tests/test_field_validation.py::test_field_log_kpis[coverage_hole.txt]",
+      "log_file": "coverage_hole.txt"
+    },
+    {
+      "evidence_id": "EV-005",
+      "type": "rf_degradation",
+      "timestamp": "09:04:00.000",
+      "cell": 3002,
+      "rf_context": {
+        "rsrp": -90,
+        "rsrq": -13,
+        "sinr": 1
+      },
+      "rsrp_breach": false,
+      "sinr_breach": false,
+      "interference_signature": true,
+      "thresholds": {
+        "rsrp_min_dbm": -110,
+        "sinr_min_db": 0
+      },
+      "originating_test": "tests/test_field_validation.py::test_field_log_kpis[coverage_hole.txt]",
+      "log_file": "coverage_hole.txt"
+    },
+    {
+      "evidence_id": "EV-006",
+      "type": "rf_degradation",
+      "timestamp": "09:04:30.000",
+      "cell": 3001,
+      "rf_context": {
+        "rsrp": -118,
+        "rsrq": -18,
+        "sinr": -6
+      },
+      "rsrp_breach": true,
+      "sinr_breach": true,
+      "interference_signature": false,
+      "thresholds": {
+        "rsrp_min_dbm": -110,
+        "sinr_min_db": 0
+      },
+      "originating_test": "tests/test_field_validation.py::test_field_log_kpis[coverage_hole.txt]",
+      "log_file": "coverage_hole.txt"
+    },
+    {
+      "evidence_id": "EV-007",
+      "type": "handover_failure",
+      "timestamp": "09:03:30.000",
+      "source_cell": 3001,
+      "target_cell": null,
+      "reestablishment_cause": "otherFailure",
+      "target_previously_measured": null,
+      "rf_context": {
+        "rsrp": -115,
+        "rsrq": -17,
+        "sinr": -4
+      },
+      "originating_test": "tests/test_field_validation.py::test_field_log_kpis[coverage_hole.txt]",
+      "log_file": "coverage_hole.txt"
+    },
+    {
+      "evidence_id": "EV-008",
+      "type": "handover_failure",
+      "timestamp": "09:10:03.000",
+      "source_cell": 2001,
+      "target_cell": 2099,
+      "reestablishment_cause": "handoverFailure",
+      "target_previously_measured": false,
+      "rf_context": {
+        "rsrp": -84,
+        "rsrq": -10,
+        "sinr": 16
+      },
+      "originating_test": "tests/test_field_validation.py::test_field_log_kpis[missing_neighbor.txt]",
+      "log_file": "missing_neighbor.txt"
+    },
+    {
+      "evidence_id": "EV-009",
+      "type": "handover_pingpong",
+      "timestamp": "09:10:07.000",
+      "cell_a": 2001,
+      "cell_b": 2002,
+      "return_gap_s": 7.0,
+      "originating_test": "tests/test_field_validation.py::test_field_log_kpis[missing_neighbor.txt]",
+      "log_file": "missing_neighbor.txt"
+    },
+    {
+      "evidence_id": "EV-010",
+      "type": "slow_handover",
+      "timestamp": "09:20:10.000",
+      "source_cell": 4001,
+      "target_cell": 4002,
+      "duration_ms": 185.0,
+      "threshold_ms": 100,
+      "rf_context": {
+        "rsrp": -79,
+        "rsrq": -9,
+        "sinr": 20
+      },
+      "originating_test": "tests/test_field_validation.py::test_field_log_kpis[param_config.txt]",
+      "log_file": "param_config.txt"
+    },
+    {
+      "evidence_id": "EV-011",
+      "type": "slow_handover",
+      "timestamp": "09:20:20.000",
+      "source_cell": 4002,
+      "target_cell": 4003,
+      "duration_ms": 230.0,
+      "threshold_ms": 100,
+      "rf_context": {
+        "rsrp": -81,
+        "rsrq": -10,
+        "sinr": 18
+      },
+      "originating_test": "tests/test_field_validation.py::test_field_log_kpis[param_config.txt]",
+      "log_file": "param_config.txt"
+    },
+    {
+      "evidence_id": "EV-012",
+      "type": "handover_failure",
+      "timestamp": "09:20:30.000",
+      "source_cell": 4003,
+      "target_cell": null,
+      "reestablishment_cause": "reconfigurationFailure",
+      "target_previously_measured": null,
+      "rf_context": {
+        "rsrp": -80,
+        "rsrq": -9,
+        "sinr": 19
+      },
+      "originating_test": "tests/test_field_validation.py::test_field_log_kpis[param_config.txt]",
+      "log_file": "param_config.txt"
+    },
+    {
+      "evidence_id": "EV-013",
+      "type": "slow_call_setup",
+      "timestamp": "09:20:00.000",
+      "setup_time_ms": 2650.0,
+      "threshold_ms": 2000,
+      "rf_context": {
+        "rsrp": -79,
+        "rsrq": -9,
+        "sinr": 20
+      },
+      "originating_test": "tests/test_field_validation.py::test_field_log_kpis[param_config.txt]",
+      "log_file": "param_config.txt"
+    }
+  ]
+}

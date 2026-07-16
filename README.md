@@ -127,7 +127,7 @@ information.
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/wireless-validation-pytest.git
+git clone https://github.com/0xh3-zo/wireless-validation-pytest.git
 cd wireless-validation-pytest
 
 # Install dependencies
@@ -357,12 +357,12 @@ MIT License - See LICENSE file for details
 ## 👤 Author
 
 **Herbert Arbizo**  
-RAN Optimization & UE Device Testing Engineer | Wireless Validation Engineer  
+Senior RAN Engineer · Engineering Program Manager | 5G NR · Open RAN · AI-Assisted Program Operations  
 
 
 - 📧 Email: [hh.arbizo@icloud.com]
 - 💼 LinkedIn: [https://www.linkedin.com/in/herbert-arbizo/]
-- 🌐 Portfolio: [https://github.com/0xh3-zo/wireless-validation-pytest]
+- 🌐 Related project: [GateKeeper — AI Program Operations Command Center](https://github.com/0xh3-zo/GateKeeper) · [live demo](https://gatekeeper-h-arbizo.streamlit.app/)
 
 ---
 
